@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="bg-primary p-4 text-center">
+                <h3>Reactive Form</h3>
+            </div>
+            <form [formGroup]="signupForm" (ngSubmit)="handleSubmit()">
+                <div class="form-group">
+                    <label for="name">Enter Name</label>
+                    <input type="text" name="name" id="name" [class.is-invalid] = "getControls['name'].invalid && getControls['name'].touched" class="form-control" formControlName="name">
+                </div>
+                <div class="alert alert-danger" *ngIf="getControls['name'].invalid && getControls['name'].touched">
+                    <div *ngIf="getControls['name'].errors && getControls['name'].errors['required']">
+                        Name is required
+                    </div>
+                    <div *ngIf="getControls['name'].errors && getControls['name'].errors['minlength']">
+                        3 Characters Minimum
+                    </div>
+                    <div *ngIf="getControls['name'].errors && getControls['name'].errors['maxlength']">
+                        20 Characters Maximum
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Enter Age</label>
+                    <input type="number" name="age" id="age" [class.is-invalid] = "getControls['age'].invalid && getControls['age'].touched" class="form-control" formControlName="age">
+                </div>
+                <div class="alert alert-danger" *ngIf="getControls['age'].invalid && getControls['age'].touched">
+                    <div *ngIf="getControls['age'].errors && getControls['age'].errors['required']">
+                        Age is required
+                    </div>
+                    <div *ngIf="getControls['age'].errors && getControls['age'].errors['min']">
+                        Minimum age is 10
+                    </div>
+                    <div *ngIf="getControls['age'].errors && getControls['age'].errors['max']">
+                        Maximum age is 50
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Enter Email</label>
+                    <input type="email" name="email" id="email" [class.is-invalid] = "getControls['email'].invalid && getControls['email'].touched" class="form-control" formControlName="email">
+                </div>
+                <div class="alert alert-danger" *ngIf="getControls['email'].invalid && getControls['email'].touched">
+                    <div *ngIf="getControls['email'].errors && getControls['email'].errors['required']">
+                        Email is required
+                    </div>
+                    <!-- <div *ngIf="getControls['email'].errors && getControls['email'].errors['email']">
+                        Invalid Email Id
+                    </div> -->
+                    <div *ngIf="getControls['email'].errors && getControls['email'].errors['pattern']">
+                        Invalid Email Id
+                    </div>
+                </div>
+                <br>
+                <div class="d-grid">
+                    <input type="submit" value="Submit" [class.disabled]="signupForm.invalid" class="btn btn-success">
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
